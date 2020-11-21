@@ -7,7 +7,7 @@ Building realtime Linux for ROS 2 [community-contributed]
 
 This tutorial begins with a clean Ubuntu 20.04.1 install on Intel x86_64. Actual kernel is 5.4.0-52-generic, but we will install the Latest Stable RT_PREEMPT Version. To build the kernel you need at least 30GB free disk space.
 
-Check https://wiki.linuxfoundation.org/realtime/start for the latest stable version, at this time it is "Latest Stable Version 5.4-rt". If we click on the `link <http://cdn.kernel.org/pub/linux/kernel/projects/rt/5.4/>`_, we get the exact version, it is patch-5.4.74-rt41.patch.gz .
+Check https://wiki.linuxfoundation.org/realtime/start for the latest stable version, at this time it is "Latest Stable Version 5.4-rt". If we click on the `link <http://cdn.kernel.org/pub/linux/kernel/projects/rt/5.4/>`_, we get the exact version, it is patch-5.4.77-rt43.patch.gz .
 
 .. image:: https://i.imgur.com/hu4Q04b.png
    :target: https://i.imgur.com/hu4Q04b.png
@@ -29,37 +29,37 @@ We can go with a browser to https://mirrors.edge.kernel.org/pub/linux/kernel/v5.
 
 .. code-block:: bash
 
-   wget https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-5.4.74.tar.gz
+   wget https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-5.4.77.tar.gz
 
 unpack it with
 
 .. code-block:: bash
 
-   tar -xzf linux-5.4.74.tar.gz
+   tar -xzf linux-5.4.77.tar.gz
 
 download rt_preempt patch with
 
 .. code-block:: bash
 
-   wget http://cdn.kernel.org/pub/linux/kernel/projects/rt/5.4/patch-5.4.74-rt41.patch.gz
+   wget http://cdn.kernel.org/pub/linux/kernel/projects/rt/5.4/patch-5.4.77-rt43.patch.gz
 
 unpack it with
 
 .. code-block:: bash
 
-   gunzip patch-5.4.74-rt41.patch.gz
+   gunzip patch-5.4.77-rt43.patch.gz
 
 Then switch into the linux directory with
 
 .. code-block:: bash
 
-   cd linux-5.4.74/
+   cd linux-5.4.77/
 
 and patch the kernel with the realtime patch
 
 .. code-block:: bash
 
-   patch -p1 < ../patch-5.4.74-rt41.patch
+   patch -p1 < ../patch-5.4.77-rt43.patch
 
 We simply want to use the config of our Ubuntu installation, so we get the Ubuntu config with
 
@@ -129,8 +129,8 @@ After the build is finished check the debian packages
 .. code-block:: bash
 
    ls ../*deb
-   ../linux-headers-5.4.74-rt41_5.4.74-rt41-1_amd64.deb  ../linux-image-5.4.74-rt41-dbg_5.4.74-rt41-1_amd64.deb
-   ../linux-image-5.4.74-rt41_5.4.74-rt41-1_amd64.deb    ../linux-libc-dev_5.4.74-rt41-1_amd64.deb
+   ../linux-headers-5.4.77-rt43_5.4.77-rt43-1_amd64.deb  ../linux-image-5.4.77-rt3-dbg_5.4.77-rt43-1_amd64.deb
+   ../linux-image-5.4.77-rt43_5.4.77-rt43-1_amd64.deb    ../linux-libc-dev_5.4.77-rt43-1_amd64.deb
 
 Then we install all kernel debian packages
 
@@ -144,4 +144,4 @@ Reboot the system and check the new kernel version
 
    sudo reboot
    uname -a
-   Linux ros2host 5.4.74-rt41 #1 SMP PREEMPT_RT Wed Nov 11 23:40:27 CET 2020 x86_64 xx
+   Linux ros2host 5.4.77-rt43 #1 SMP PREEMPT_RT Wed Nov 11 23:40:27 CET 2020 x86_64 xx
